@@ -57,27 +57,27 @@ app.post('/payment',(req,res)=>{
               console.log(err)
             }
             else{
-              // var trans=nodemailer.createTransport({
-              //   service:'gmail',
-              //   auth:{
-              //     user:'sahaorchid722@gmail.com',
-              //     pass:'Aa@98300203'
-              //   }
-              // })
-              // var mailOptions={
-              //   from:'sahaorchid722@gmail.com',
-              //   to:'sahashyama3@gmail.com',
-              //   text:'congrates! payment successfull'
-              //   html:<h1>token.receipt_url</h1>
-              // }
-              // trans.sendMail(mailOptions,(err,info)=>{
-              //   if(err){
-              //     console.log(err)
-              //   }
-              //   else{
-              //     console.log("done")
-              //   }
-              // })
+              var trans=nodemailer.createTransport({
+                service:'gmail',
+                auth:{
+                  user:'sahaorchid722@gmail.com',
+                  pass:'Aa@98300203'
+                }
+              })
+              var mailOptions={
+                from:'sahaorchid722@gmail.com',
+                to:'sahashyama3@gmail.com',
+                text:'congrates! payment successfull'
+                html:<h1>token.receipt_url</h1>
+              }
+              trans.sendMail(mailOptions,(err,info)=>{
+                if(err){
+                  console.log(err)
+                }
+                else{
+                  console.log("done")
+                }
+              })
               let customer={idcustomer:'12',id:token.id,email:req.body.email,location:req.body.address}
               let sql='INSERT INTO customer SET?'
               let query=con.query(sql,customer,(err,result)=>{
